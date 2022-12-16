@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company name</title>
+</head>
+<body>
+ <!-- Include navigation -->
+ {% include 'nav.html' %}
+
+<!-- Flash messages -->
+    <main>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Render main content -->
+      {% block content %}
+      {% endblock %}
+    </main>
+
+ <!-- Include footer -->
+{% include 'footer.html' %}
+
+</body>
+</html>

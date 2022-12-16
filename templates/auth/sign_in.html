@@ -1,1 +1,16 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
 
+{% block content %}
+
+<section>
+    <H1>Log in </H1>
+  <form method=post>
+      <dl>
+        {{ render_field(form.login) }}
+        {{ render_field(form.password) }}
+      </dl>
+      <input type="submit" value=Submit>
+    </form>
+</section>
+{% endblock %}
