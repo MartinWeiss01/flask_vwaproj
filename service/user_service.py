@@ -20,3 +20,14 @@ class UserService():
             return user
         else:
             return None
+
+
+
+    @staticmethod
+    def registration_user():
+        db= get_db()
+        db.execute(
+            ' NEED A DATABASE WITH TABLE'
+
+        )
+        db.commit()

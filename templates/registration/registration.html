@@ -8,11 +8,16 @@
   <form method=post>
       <dl>
         {{ render_field(form.login) }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.surname) }}
         {{ render_field(form.password) }}
+        {{ render_field(form.password1) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.phone) }}
       </dl>
-      <input type="submit" value=Submit>
+      <input type="submit" value=Register>
     </form>
 
-    <p>New User? <a href="{{ url_for('reg.registration') }}">Click to Register!</a></p>
+
 </section>
 {% endblock %}

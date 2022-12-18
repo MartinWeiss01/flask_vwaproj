@@ -19,7 +19,7 @@ def sign_in():
             session['login'] = user['login']
             session['role'] = user['role']
             return redirect(url_for('homepage.index'))
-    return render_template("auth/sign_in.jinja", form=form)
+    return render_template("auth/sign_in.html", form=form)
 
 
 @auth_bp.route('/signout')

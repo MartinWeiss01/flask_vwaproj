@@ -1,0 +1,21 @@
+{% block nav %}
+    <div
+        class="hamburger"
+        onclick="document.getElementById('nav').classList.toggle('visible')"
+    >
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    <nav id="nav">
+        <a href="{{url_for('homepage.index')}}">Home</a>
+        <a>Statistic</a>
+        <a>Actual Price</a>
+        <a>About Us</a>
+        {% if session['authenticated'] %}
+            <a href="{{url_for('auth.signout')}}">Logout {{session['login']}}</a>
+        {% else %}
+            <a href="{{url_for('auth.sign_in')}}">Sign in</a>
+        {% endif %}
+    </nav>
+
+    <header></header>
+{% endblock%}
