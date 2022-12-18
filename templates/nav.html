@@ -6,7 +6,8 @@
         <i class="fa-solid fa-bars"></i>
     </div>
     <nav id="nav">
-        <a href="{{url_for('homepage.index')}}">Home</a>
+
+        <a href="{{url_for('homepage.index')}}">Home Company</a>
         <a>Statistic</a>
         <a>Actual Price</a>
         <a>About Us</a>
@@ -15,6 +16,8 @@
         {% else %}
             <a href="{{url_for('auth.sign_in')}}">Sign in</a>
         {% endif %}
+    </div>
+
     </nav>
 
     <header></header>
