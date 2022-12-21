@@ -21,11 +21,12 @@ class UserService():
             return None
 
     @staticmethod
-    def register(email, password, phone, firstname, lastname, roles_id):
+    def register(email, password, phone, firstname, lastname):
         db = get_db()
         hash = hashlib.sha256(f'{password}{config.PASSWORD_SALT}'.encode())
         db.execute('''
             INSERT INTO users (email, password, phone, firstname, lastname, roles_id)
             VALUES (?, ?, ?, ?, ?, ?)
-        ''', [email, hash.hexdigest(), phone, firstname, lastname, roles_id])
+        ''', [email, hash.hexdigest(), phone, firstname, lastname, config.DEFAULT_ROLE_ID])
         db.commit()
+        #result.lastrowid
