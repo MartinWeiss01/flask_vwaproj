@@ -21,6 +21,13 @@ def sign_in():
             return redirect(url_for('homepage.index'))
     return render_template("auth/sign_in.html", form=form)
 
+@auth_bp.route('/signup', methods=['GET', 'POST'])
+def sign_up():
+    form = forms.RegistrationUserForm(request.form)
+    if request.method == 'POST':
+        print(request.form)
+        return redirect(url_for('auth.sign_in'))
+    return render_template('auth/sign_up.html', form=form)
 
 @auth_bp.route('/signout')
 @auth.login_required

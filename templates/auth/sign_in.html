@@ -6,13 +6,13 @@
 <section>
 
   <form method=post>
-      <dl>
-        {{ render_field(form.login) }}
-        {{ render_field(form.password) }}
-      </dl>
-      <input type="submit" value=Submit>
-    </form>
+    <dl>
+      {{ render_field(form.login) }}
+      {{ render_field(form.password) }}
+    </dl>
+    <input type="submit" value=Submit>
+  </form>
 
-    <p>New User? <a href="{{ url_for('reg.registration') }}">Click to Register!</a></p>
+  <p>New User? <a href="{{ url_for('auth.sign_up') }}">Click to Register!</a></p>
 </section>
 {% endblock %}
