@@ -9,8 +9,8 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/signin', methods=['GET', 'POST'])
 def sign_in():
     form = forms.SignInForm(request.form)
-    if request.method == 'POST':
-        user = UserService.verify(email=request.form['login'], password=request.form['password'])
+    if request.method == 'POST' and form.validate():
+        user = UserService.verify(email=request.form['email'], password=request.form['password'])
         if user:
             session['authenticated'] = 1
             session['user_id'] = user['id']
@@ -28,7 +28,7 @@ def sign_in():
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     form = forms.RegistrationUserForm(request.form)
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate():
         insertedId = UserService.register(email=request.form['email'], password=request.form['password'], phone=request.form['phone'], firstname=request.form['firstname'], lastname=request.form['lastname'])
         if insertedId != -1:
             return redirect(url_for('auth.sign_in'))

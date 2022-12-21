@@ -5,12 +5,10 @@
 
 <section>
 
-  <form method=post>
-    <dl>
-      {{ render_field(form.login) }}
-      {{ render_field(form.password) }}
-    </dl>
-    <input type="submit" value=Submit>
+  <form method="POST">
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    <input type="submit" value="Sign In">
   </form>
 
   <p>New User? <a href="{{ url_for('auth.sign_up') }}">Click to Register!</a></p>

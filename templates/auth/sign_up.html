@@ -6,15 +6,13 @@
 <section>
 
   <form method="POST">
-    <dl>
-      {{ render_field(form.firstname) }}
-      {{ render_field(form.lastname) }}
-      {{ render_field(form.email) }}
-      {{ render_field(form.password) }}
-      {{ render_field(form.password_repeat) }}
-      {{ render_field(form.phone) }}
-    </dl>
-    <input type="submit" value="Register">
+    {{ render_field(form.firstname) }}
+    {{ render_field(form.lastname) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.password_repeat) }}
+    {{ render_field(form.phone) }}
+    <input type="submit" value="Sign Up">
   </form>
 
 </section>
