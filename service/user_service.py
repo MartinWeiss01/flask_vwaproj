@@ -9,7 +9,6 @@ class UserService():
     def verify(login, password):
         db = get_db()
         hashed_passorwd = hashlib.sha256(f'{password}{config.PASSWORD_SALT}'.encode())
-        # print(hashed_passorwd.hexdigest())
 
         user = db.execute('''
             SELECT users.id, users.login, users.is_active, user_types.role 
@@ -21,13 +20,12 @@ class UserService():
         else:
             return None
 
-
-
     @staticmethod
-    def registration_user():
-        db= get_db()
-        db.execute(
-            ' NEED A DATABASE WITH TABLE'
-
-        )
+    def register(email, password, phone, firstname, lastname, roles_id):
+        db = get_db()
+        hash = hashlib.sha256(f'{password}{config.PASSWORD_SALT}'.encode())
+        db.execute('''
+            INSERT INTO users (email, password, phone, firstname, lastname, roles_id)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', [email, hash.hexdigest(), phone, firstname, lastname, roles_id])
         db.commit()
