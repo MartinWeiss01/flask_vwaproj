@@ -25,7 +25,7 @@ def sign_in():
 def sign_up():
     form = forms.RegistrationUserForm(request.form)
     if request.method == 'POST':
-        print(request.form)
+        UserService.register(email=request.form['email'], password=request.form['password'], phone=request.form['phone'], firstname=request.form['firstname'], lastname=request.form['lastname'])
         return redirect(url_for('auth.sign_in'))
     return render_template('auth/sign_up.html', form=form)
 
