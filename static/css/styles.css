@@ -9,7 +9,7 @@
 /* Reset all elements */
 * {
   margin: 0;
-  font-family: "arial", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -51,16 +51,6 @@ a.active {
 p {
   text-align: justify;
   font-size: 1em;
-}
-
-p,
-ul,
-table {
-  margin-bottom: 1em;
-}
-
-li {
-  margin-bottom: 0.5em;
 }
 
 img.left-image {
@@ -353,4 +343,30 @@ footer a {
   padding: 0.5rem 0;
   color: red;
   font-size: small;
+}
+
+.flashes-box {
+  background: #fef2f2;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.flashes-box .flashes-title {
+  color: #991b1b;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.flashes-box .flashes-content {
+  margin-top: 0.5rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.flashes-content ul {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+  list-style-type: disc;
 }
