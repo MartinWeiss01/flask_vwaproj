@@ -1,7 +1,10 @@
 :root {
   --base-color: rgb(0, 166, 97);
+  --base-color-rgb: 0, 166, 97;
   --dark-color: rgb(44, 110, 73);
+  --dark-color-rgb: 44, 110, 73;
   --light-color: rgb(248, 229, 255);
+  --light-color-rgb: 248, 229, 255;
 }
 
 /** --- LAYOUT --- */
@@ -68,41 +71,84 @@ img.left-image {
   }
 }
 
+/* --- TABLES --- */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 6px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
-th,
-td {
-  padding: 0.2em 0.7em;
-  border: 1px solid lightgray;
+thead {
+  background-color: #f9fafb;
 }
 
-th {
-  background: var(--light-color);
+thead > tr > th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
 }
 
-table ul {
-  margin: 0;
-  padding-left: 1em;
+tbody {
+  background-color: #ffffff;
+  border-top-width: 1px;
+  border-color: #e5e7eb;
 }
 
-.mobile-table {
-  width: 100%;
+tbody > tr > td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  white-space: nowrap;
+}
+
+tbody > tr > td:first-child {
+  font-weight: 500;
+}
+
+.stacked-column-left td:first-child,
+.stacked-column-left th:first-child {
+  position: sticky;
+  z-index: 7;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.stacked-column-top {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+}
+
+.column-right-align {
+  text-align: right;
+}
+
+.only-mobile {
   display: none;
-  font-size: 0.8em;
-}
-
-.mobile-table th {
-  writing-mode: vertical-lr;
 }
 
 @media screen and (max-width: 576px) {
-  .mobile-table {
-    display: table;
+  .only-mobile {
+    display: block;
   }
-  .desktop-table {
+  .only-desktop {
     display: none;
   }
 }
@@ -189,7 +235,8 @@ nav a:hover {
   width: 100%;
   display: none;
   color: white;
-  padding: 1em;
+  padding: 1em 0;
+  z-index: 20;
 }
 
 @media screen and (max-width: 768px) {
