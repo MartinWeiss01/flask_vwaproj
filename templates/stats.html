@@ -1,22 +1,31 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<section>
+<section class="auth-block">
   <h1>Statistics</h1>
 
   <table>
-    <tr>
-      <th>Material</th>
-      <th>Average Received Weight</th>
-      <th>Last Received</th>
-    </tr>
-    {% for record in stats %}
-    <tr>
-      <td>{{ record.name }}</td>
-      <td>{{ "%.2f"|format(record.average_weight) }} kg</td>
-      <td title="{{ record.latest_received }}" data-dateformatter="true">{{ record.latest_received }}</td>
-    </tr>
-    {% endfor %}
+    <thead>
+      <tr>
+        <th>Material</th>
+        <th>Average Received Weight</th>
+        <th>Last Received</th>
+        <th>Total Weight</th>
+        <th>Total Received</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for record in stats %}
+      <tr>
+        <td>{{ record.name }}</td>
+        <td>{{ "%.2f"|format(record.average_weight) }} kg</td>
+        <td title="{{ record.latest_received }}" data-dateformatter="true">{{ record.latest_received }}</td>
+        <td>{{ "%.2f"|format(record.total_received) }} kg</td>
+        <td>{{ record.total_received_count }}x</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
 
 </section>

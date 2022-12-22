@@ -5,7 +5,7 @@
 <nav id="nav">
 
     <a href="{{url_for('homepage.index')}}">Home Company</a>
-    <a>Statistic</a>
+    <a href="{{url_for('view_all_stats')}}">Statistics</a>
     <a href="{{url_for('view_current_prices')}}">Current Prices</a>
     <a>About Us</a>
     {% if session['authenticated'] %}
