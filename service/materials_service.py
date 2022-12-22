@@ -13,7 +13,7 @@ class MaterialsService():
     def get_stats():
         db = get_db()
         return db.execute('''
-          SELECT materials_id, materials.name, MAX(received) as latest_received, AVG(weight) as average_weight
+          SELECT materials_id, materials.name, MAX(received) as latest_received, AVG(weight) as average_weight, SUM(weight) as total_received, COUNT(*) as total_received_count
             FROM collections
             INNER JOIN materials ON materials.id = collections.materials_id
             GROUP BY materials_id
