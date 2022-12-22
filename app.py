@@ -17,6 +17,11 @@ def view_current_prices():
     prices = MaterialsService.get_current_prices()
     return render_template("prices.html", prices=prices)
 
+@app.route('/stats')
+def view_all_stats():
+    stats = MaterialsService.get_stats()
+    return render_template("stats.html", stats=stats)
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
 
