@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Company name</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" c
-          rossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Company name</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" c
+    rossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 </head>
 
 <body>
- <!-- Include navigation -->
- {% include 'nav.html' %}
+  <!-- Include navigation -->
+  {% include 'nav.html' %}
 
-<!-- Flash messages -->
-    <main>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class=flashes>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
+  <main>
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 
-      <!-- Render main content -->
-      {% block content %}
+    <!-- Render main content -->
+    {% block content %}
 
-      {% endblock %}
-    </main>
+    {% endblock %}
+  </main>
 
- <!-- Include footer -->
-{% include 'footer.html' %}
+  <!-- Include footer -->
+  {% include 'footer.html' %}
 
+  <!-- Scripts -->
+  <script>
+    // Format date
+    const dateElements = document.querySelectorAll('[data-dateformatter="true"]');
+    dateElements.forEach((element) => {
+      const date = new Date(element.innerText);
+      element.innerText = date.toLocaleString();
+    });
+  </script>
 </body>
+
 </html>
