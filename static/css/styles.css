@@ -327,7 +327,7 @@ footer a {
 }
 
 /* --- Sections --- */
-.auth-block {
+.flex-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -335,11 +335,11 @@ footer a {
   gap: 2rem;
 }
 
-.auth-submit {
+.w-100 {
   width: 100%;
 }
 
-.auth-block > form {
+.flex-center > form {
   width: 100%;
   max-width: 285px;
   background: #eaeaea57;

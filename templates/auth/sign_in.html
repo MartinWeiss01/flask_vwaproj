@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<section class="auth-block">
+<section class="flex-center">
   <h1>Sign In</h1>
 
   <form method="POST">
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
-    <input type="submit" class="auth-submit" value="Sign In">
+    <input type="submit" class="w-100" value="Sign In">
   </form>
 
   <p>Not registered yet? <a href="{{ url_for('auth.sign_up') }}">Create an account</a></p>
