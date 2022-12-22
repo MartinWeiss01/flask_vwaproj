@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section>
+  <h1>Statistics</h1>
+
+  <table>
+    <tr>
+      <th>Material</th>
+      <th>Average Received Weight</th>
+      <th>Last Received</th>
+    </tr>
+    {% for record in stats %}
+    <tr>
+      <td>{{ record.name }}</td>
+      <td>{{ "%.2f"|format(record.average_weight) }} kg</td>
+      <td title="{{ record.latest_received }}" data-dateformatter="true">{{ record.latest_received }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</section>
+{% endblock %}
