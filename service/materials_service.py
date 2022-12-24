@@ -10,6 +10,7 @@ class MaterialsService():
           INNER JOIN prices ON prices.id = latest_prices.pid
         ''').fetchall()
     
+    @staticmethod
     def get_stats():
         db = get_db()
         return db.execute('''
@@ -18,3 +19,35 @@ class MaterialsService():
             INNER JOIN materials ON materials.id = collections.materials_id
             GROUP BY materials_id
         ''').fetchall()
+    
+    @staticmethod
+    def add_new_material(name, price):
+        db = get_db()
+        try:
+            result = db.execute('''
+                INSERT INTO materials (name)
+                VALUES (?)
+            ''', [name])
+            db.commit()
+            material_id = result.lastrowid
+            db.execute('''
+                INSERT INTO prices (materials_id, price, added)
+                VALUES (?, ?, CURRENT_TIMESTAMP)
+            ''', [material_id, price])
+            db.commit()
+            return material_id
+        except Exception:
+            return -1
+    
+    @staticmethod
+    def update_price(material_id, price):
+        db = get_db()
+        try:
+            db.execute('''
+                INSERT INTO prices (materials_id, price, added)
+                VALUES (?, ?, CURRENT_TIMESTAMP)
+            ''', [material_id, price])
+            db.commit()
+            return True
+        except Exception:
+            return False

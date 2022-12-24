@@ -40,3 +40,81 @@ class UserService():
         except Exception:
             #if new account is created, return user id (inserted id), else return -1
             return -1
+    
+    @staticmethod
+    def get_activated_users():
+        db = get_db()
+        result = db.execute('''
+            SELECT
+                users.id,
+                users.email,
+                users.phone,
+                users.firstname,
+                users.lastname,
+                users.activated,
+                users.roles_id,
+                roles.title
+            FROM users
+                INNER JOIN roles ON roles.id = users.roles_id
+            WHERE activated = 1
+        ''').fetchall()
+        return result
+    
+    @staticmethod
+    def get_unactivated_users():
+        db = get_db()
+        result = db.execute('''
+            SELECT
+                users.id,
+                users.email,
+                users.phone,
+                users.firstname,
+                users.lastname,
+                users.activated,
+                roles.title
+            FROM users
+                INNER JOIN roles ON roles.id = users.roles_id
+            WHERE activated = 0
+        ''').fetchall()
+        return result
+    
+    @staticmethod
+    def activate_user(user_id):
+        db = get_db()
+        try:
+            db.execute('''
+                UPDATE users
+                SET
+                    activation = CURRENT_TIMESTAMP,
+                    activated = 1
+                WHERE id = ?
+            ''', [user_id])
+            db.commit()
+            return True
+        except Exception:
+            return False
+    
+    @staticmethod
+    def get_roles():
+        db = get_db()
+        result = db.execute('''
+            SELECT
+                roles.id,
+                roles.title
+            FROM roles
+        ''').fetchall()
+        return result
+    
+    @staticmethod
+    def set_user_role(user_id, role_id):
+        db = get_db()
+        try:
+            db.execute('''
+                UPDATE users
+                SET roles_id = ?
+                WHERE id = ?
+            ''', [role_id, user_id])
+            db.commit()
+            return True
+        except Exception:
+            return False
