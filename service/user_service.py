@@ -40,7 +40,28 @@ class UserService():
         except Exception:
             #if new account is created, return user id (inserted id), else return -1
             return -1
-    
+
+    @staticmethod
+    def get_users():
+        db = get_db()
+        result = db.execute('''
+            SELECT
+                users.id,
+                users.email,
+                users.phone,
+                users.firstname,
+                users.lastname,
+                users.registration,
+                users.activation,
+                users.activated,
+                users.roles_id,
+                roles.title,
+                IIF(activated == 1, 'Approved', 'Waiting') as state
+            FROM users
+                INNER JOIN roles ON roles.id = users.roles_id
+        ''').fetchall()
+        return result
+
     @staticmethod
     def get_activated_users():
         db = get_db()
@@ -51,6 +72,8 @@ class UserService():
                 users.phone,
                 users.firstname,
                 users.lastname,
+                users.registration,
+                users.activation,
                 users.activated,
                 users.roles_id,
                 roles.title
@@ -70,7 +93,10 @@ class UserService():
                 users.phone,
                 users.firstname,
                 users.lastname,
+                users.registration,
+                users.activation,
                 users.activated,
+                users.roles_id,
                 roles.title
             FROM users
                 INNER JOIN roles ON roles.id = users.roles_id
@@ -114,6 +140,19 @@ class UserService():
                 SET roles_id = ?
                 WHERE id = ?
             ''', [role_id, user_id])
+            db.commit()
+            return True
+        except Exception:
+            return False
+    
+    @staticmethod
+    def delete_user(user_id):
+        db = get_db()
+        try:
+            db.execute('''
+                DELETE FROM users
+                WHERE id = ?
+            ''', [user_id])
             db.commit()
             return True
         except Exception:

@@ -122,6 +122,11 @@ tbody > tr > td:first-child {
   font-weight: 500;
 }
 
+tbody > tr > td.multiline {
+  display: flex;
+  flex-direction: column;
+}
+
 .stacked-column-left td:first-child,
 .stacked-column-left th:first-child {
   position: sticky;
@@ -416,4 +421,49 @@ footer a {
   padding-left: 1.25rem;
   margin-top: 0.25rem;
   list-style-type: disc;
+}
+
+.boolean-state[data-state="1"] {
+  color: #28a745;
+}
+
+.boolean-state[data-state="0"] {
+  color: #dc8e35;
+}
+
+.search-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-action {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-action:hover {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-action.success {
+  background: #28a745;
+}
+.btn-action.success:hover {
+  background: #218838;
+}
+
+.btn-action.danger {
+  background: #dc3545;
+}
+
+.btn-action.danger:hover {
+  background: #c82333;
 }
