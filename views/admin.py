@@ -1,16 +1,21 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 
+import auth
 import forms
 from service.materials_service import MaterialsService
 
 admin_bp = Blueprint('admin', __name__)
 
 @admin_bp.route('/materials/manage', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
 def update_prices():
   prices = MaterialsService.get_current_prices()
   return render_template('admin/materials/manage.html', prices=prices)
 
 @admin_bp.route('/materials/manage/<int:material_id>', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
 def update_material(material_id):
   form = forms.MaterialForm(request.form)
   material_name = MaterialsService.get_material_name(material_id)
@@ -34,6 +39,8 @@ def update_material(material_id):
     return render_template('admin/materials/update.html', form=form, material_name=material_name)
 
 @admin_bp.route('/materials/new', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
 def new_material():
   form = forms.MaterialForm(request.form)
   if request.method == 'POST' and form.validate():
