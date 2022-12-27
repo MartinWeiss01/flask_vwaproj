@@ -11,3 +11,10 @@ accounts_bp = Blueprint('accounts', __name__)
 def manage_accounts():
   users = UserService.get_users()
   return render_template('admin/accounts/manage.html', users=users)
+
+@accounts_bp.route('/activate/<int:user_id>', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
+def activate_account(user_id):
+  UserService.activate_user(user_id)
+  return redirect(url_for('accounts.manage_accounts'))
