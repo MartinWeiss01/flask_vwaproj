@@ -11,6 +11,7 @@
           <th>Account</th>
           <th>Role</th>
           <th>Status</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -23,6 +24,15 @@
           </td>
           <td>{{ account.title }}</td>
           <td data-state="{{ account.activated }}" class="boolean-state">{{ account.state }}</td>
+          <td class="column-right-align">
+            {% if not account.activated %}
+          <td class="column-right-align">
+            <a href="{{ url_for('admin.accounts.activate_account', user_id=account.id) }}">
+              Approve
+            </a>
+          </td>
+          {% endif %}
+          </td>
         </tr>
         {% endfor %}
       </tbody>
