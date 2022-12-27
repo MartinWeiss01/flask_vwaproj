@@ -52,6 +52,7 @@ class UserService():
                 users.firstname,
                 users.lastname,
                 users.activated,
+                users.roles_id,
                 roles.title,
                 IIF(activated == 1, 'Approved', 'Waiting') as state
             FROM users
