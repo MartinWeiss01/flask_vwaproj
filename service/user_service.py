@@ -52,7 +52,8 @@ class UserService():
                 users.firstname,
                 users.lastname,
                 users.activated,
-                roles.title
+                roles.title,
+                IIF(activated == 1, 'Activated', 'Not Activated') as state
             FROM users
                 INNER JOIN roles ON roles.id = users.roles_id
         ''').fetchall()
