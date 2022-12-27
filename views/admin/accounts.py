@@ -10,11 +10,20 @@ accounts_bp = Blueprint('accounts', __name__)
 @auth.roles_required('admin')
 def manage_accounts():
   users = UserService.get_users()
-  return render_template('admin/accounts/manage.html', users=users)
+  roles = UserService.get_roles()
+  return render_template('admin/accounts/manage.html', users=users, roles=roles, current_user_id=session['user_id'])
 
 @accounts_bp.route('/activate/<int:user_id>', methods=['GET', 'POST'])
 @auth.login_required
 @auth.roles_required('admin')
 def activate_account(user_id):
   UserService.activate_user(user_id)
-  return redirect(url_for('accounts.manage_accounts'))
+  return redirect(url_for('admin.accounts.manage_accounts'))
+
+@accounts_bp.route('/change_role/<int:user_id>', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
+def change_role(user_id):
+  role_id = request.args.get('role_id')
+  UserService.set_user_role(user_id, role_id)
+  return redirect(url_for('admin.accounts.manage_accounts'))
