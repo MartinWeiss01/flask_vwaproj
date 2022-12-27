@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from views.auth import auth_bp
 from views.homepage import homepage
-from views.admin import admin_bp
+from views.admin.admin import admin_bp
 from database import database
 from service.materials_service import MaterialsService
 

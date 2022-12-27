@@ -5,7 +5,7 @@
   <h1>Manage Materials</h1>
 
   <div class="flex-center">
-    <a href="{{ url_for('admin.new_material') }}" class="btn btn-primary">Add new Material</a>
+    <a href="{{ url_for('admin.materials.new_material') }}" class="btn btn-primary">Add new Material</a>
   </div>
 
   <div class="responsive-table">
@@ -26,7 +26,8 @@
           <td>{{ "%.2f"|format(material.price) }} Kč</td>
           <td class="column-right-align" title="{{ material.added }}" data-dateformatter="true">{{ material.added }}
           </td>
-          <td class="column-right-align"><a href="{{ url_for('admin.update_material', material_id=material.id) }}"
+          <td class="column-right-align"><a
+              href="{{ url_for('admin.materials.update_material', material_id=material.id) }}"
               class="btn btn-primary">Edit</a></td>
         </tr>
         {% endfor %}
