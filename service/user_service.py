@@ -40,7 +40,24 @@ class UserService():
         except Exception:
             #if new account is created, return user id (inserted id), else return -1
             return -1
-    
+
+    @staticmethod
+    def get_users():
+        db = get_db()
+        result = db.execute('''
+            SELECT
+                users.id,
+                users.email,
+                users.phone,
+                users.firstname,
+                users.lastname,
+                users.activated,
+                roles.title
+            FROM users
+                INNER JOIN roles ON roles.id = users.roles_id
+        ''').fetchall()
+        return result
+
     @staticmethod
     def get_activated_users():
         db = get_db()
