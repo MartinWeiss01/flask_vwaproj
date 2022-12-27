@@ -51,6 +51,8 @@ class UserService():
                 users.phone,
                 users.firstname,
                 users.lastname,
+                users.registration,
+                users.activation,
                 users.activated,
                 users.roles_id,
                 roles.title,
@@ -70,6 +72,8 @@ class UserService():
                 users.phone,
                 users.firstname,
                 users.lastname,
+                users.registration,
+                users.activation,
                 users.activated,
                 users.roles_id,
                 roles.title
@@ -89,7 +93,10 @@ class UserService():
                 users.phone,
                 users.firstname,
                 users.lastname,
+                users.registration,
+                users.activation,
                 users.activated,
+                users.roles_id,
                 roles.title
             FROM users
                 INNER JOIN roles ON roles.id = users.roles_id
