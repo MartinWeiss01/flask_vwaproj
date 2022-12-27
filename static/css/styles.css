@@ -422,3 +422,11 @@ footer a {
   margin-top: 0.25rem;
   list-style-type: disc;
 }
+
+.boolean-state[data-state="1"] {
+  color: #28a745;
+}
+
+.boolean-state[data-state="0"] {
+  color: #dc8e35;
+}
