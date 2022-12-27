@@ -439,7 +439,7 @@ footer a {
 }
 
 .btn-action {
-  background: #000;
+  background: var(--dark-color);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
