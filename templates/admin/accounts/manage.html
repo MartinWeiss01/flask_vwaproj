@@ -4,6 +4,11 @@
 <section class="flex-center">
   <h1>Manage Accounts</h1>
 
+  <div class="search-bar">
+    <small><label for="search">Find account</label></small>
+    <input type="text" name="search" id="search" placeholder="Name or Email">
+  </div>
+
   <div class="responsive-table">
     <table>
       <thead>
@@ -57,6 +62,23 @@
 </section>
 
 <script>
+  const search = document.querySelector('#search');
+  const table = document.querySelector('table');
+  const tableRows = table.querySelectorAll('tbody tr');
 
+  search.addEventListener('input', (e) => {
+    const searchValue = e.target.value.toLowerCase();
+
+    tableRows.forEach((row) => {
+      const account = row.querySelector('td:first-child').innerText.toLowerCase();
+      const email = row.querySelector('td:first-child small').innerText.toLowerCase();
+
+      if (email.includes(searchValue) || account.includes(searchValue)) {
+        row.style.display = 'table-row';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
 </script>
 {% endblock %}
