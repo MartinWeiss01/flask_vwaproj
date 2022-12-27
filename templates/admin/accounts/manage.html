@@ -4,7 +4,29 @@
 <section class="flex-center">
   <h1>Manage Accounts</h1>
 
+  <div class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        {% for account in users %}
+        <tr data-accountid="{{ account.id }}">
+          <td class="multiline">
+            <span>{{ account.firstname }} {{ account.lastname }}</span>
+            <small>{{ account.email }}</small>
+          </td>
+          <td>{{ account.title }}</td>
+          <td data-state="{{ account.activated }}" class="boolean-state">{{ account.state }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
 </section>
 {% endblock %}

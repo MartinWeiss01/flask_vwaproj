@@ -122,6 +122,11 @@ tbody > tr > td:first-child {
   font-weight: 500;
 }
 
+tbody > tr > td.multiline {
+  display: flex;
+  flex-direction: column;
+}
+
 .stacked-column-left td:first-child,
 .stacked-column-left th:first-child {
   position: sticky;
