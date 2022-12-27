@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 
 import auth
+from service.user_service import UserService
 
 accounts_bp = Blueprint('accounts', __name__)
 
@@ -8,4 +9,5 @@ accounts_bp = Blueprint('accounts', __name__)
 @auth.login_required
 @auth.roles_required('admin')
 def manage_accounts():
-  return render_template('admin/accounts/manage.html')
+  users = UserService.get_users()
+  return render_template('admin/accounts/manage.html', users=users)
