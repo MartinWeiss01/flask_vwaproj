@@ -9,8 +9,8 @@ def login_required(func):
     def decorated_function(*args, **kwargs):
         print(session)
         if "authenticated" not in session:
-            flash("You must be logged in")
-            return redirect(url_for("view_sign_in"))
+            flash("You must be logged in to access this page")
+            return redirect(url_for("auth.sign_in"))
         return func(*args, **kwargs)
     return decorated_function
 
@@ -20,8 +20,8 @@ def roles_required(*roles):
         @wraps(func)
         def decorated_function(*args, **kwargs):
             if session['role'] not in roles:
-                flash('Sorry this place is not for you...')
-                return redirect(url_for('view_sign_in'))
+                flash('You do not have permission to access this page')
+                return redirect(url_for('homepage.index'))
             return func(*args, **kwargs)
         return decorated_function
     return roles_decorator

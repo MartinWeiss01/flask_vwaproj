@@ -40,6 +40,18 @@ class MaterialsService():
             return -1
     
     @staticmethod
+    def update_name(material_id, name):
+        db = get_db()
+        try:
+            db.execute('''
+                UPDATE materials SET name = ? WHERE id = ?
+            ''', [name, material_id])
+            db.commit()
+            return True
+        except Exception:
+            return False
+
+    @staticmethod
     def update_price(material_id, price):
         db = get_db()
         try:
@@ -51,3 +63,13 @@ class MaterialsService():
             return True
         except Exception:
             return False
+    
+    @staticmethod
+    def get_material_name(material_id):
+        db = get_db()
+        result = db.execute('''
+            SELECT name FROM materials WHERE id = ?
+        ''', [material_id]).fetchone()
+        if result is None:
+            return None
+        return result['name']

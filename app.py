@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from views.auth import auth_bp
 from views.homepage import homepage
+from views.admin import admin_bp
 from database import database
 from service.materials_service import MaterialsService
 
@@ -11,6 +12,7 @@ database.init_app(app)
 
 app.register_blueprint(homepage, url_prefix='/')
 app.register_blueprint(auth_bp, url_prefix='/auth')
+app.register_blueprint(admin_bp, url_prefix='/admin')
 
 @app.route('/prices')
 def view_current_prices():
