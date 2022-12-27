@@ -60,7 +60,6 @@ CREATE TABLE collections (
 
 -------- Insert initial data
 INSERT INTO roles (title) VALUES ('default');
-INSERT INTO roles (title) VALUES ('limited_admin');
 INSERT INTO roles (title) VALUES ('employee');
 INSERT INTO roles (title) VALUES ('admin');
 
@@ -79,12 +78,12 @@ INSERT INTO materials (name) VALUES ('Platina');
 
 
 
-INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('282367de@seznam45164.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125243', 'Anna', 'Novotná', '2022-10-01 11:34:01', '2022-10-02 11:34:01', 1, 4);
-INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('09e8b2c1@seznam14441.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126251', 'Aleš', 'Nový', '2022-10-03 09:22:12', '2022-10-04 09:22:12', 1, 3);
-INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('b7db49a4@seznam8641.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125242', 'Boris', 'Starý', '2022-10-05 14:29:32', '2022-10-06 14:29:32', 1, 2);
-INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('570b615b@seznam44866.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126252', 'Berta', 'Mladá', '2022-11-02 05:11:46', '2022-11-03 05:11:46', 1, 1);
-INSERT INTO users (email, password, phone, firstname, lastname, registration, roles_id) VALUES ('bf41c779@seznam7942.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125241', 'Karel', 'Dlouhý', '2022-11-04 08:02:05', 1);
-INSERT INTO users (email, password, phone, firstname, lastname, registration, roles_id) VALUES ('5ca935a9@seznam21476.local', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126253', 'Klára', 'Prokopová', '2022-01-06 12:44:09', 1); 
+INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('282367de@seznam45164.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125243', 'Anna', 'Novotná', '2022-10-01 11:34:01', '2022-10-02 11:34:01', 1, 3);
+INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('09e8b2c1@seznam14441.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126251', 'Aleš', 'Nový', '2022-10-03 09:22:12', '2022-10-04 09:22:12', 1, 2);
+INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('b7db49a4@seznam8641.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125242', 'Boris', 'Starý', '2022-10-05 14:29:32', '2022-10-06 14:29:32', 1, 2);
+INSERT INTO users (email, password, phone, firstname, lastname, registration, activation, activated, roles_id) VALUES ('570b615b@seznam44866.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126252', 'Berta', 'Mladá', '2022-11-02 05:11:46', '2022-11-03 05:11:46', 1, 1);
+INSERT INTO users (email, password, phone, firstname, lastname, registration, roles_id) VALUES ('bf41c779@seznam7942.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+420733125241', 'Karel', 'Dlouhý', '2022-11-04 08:02:05', 1);
+INSERT INTO users (email, password, phone, firstname, lastname, registration, roles_id) VALUES ('5ca935a9@seznam21476.cz', '55863a2db485cd281fa934bfff935bb3f689dd8775d3b9f3df95456867c02966', '+421733126253', 'Klára', 'Prokopová', '2022-01-06 12:44:09', 1); 
 
 
 
