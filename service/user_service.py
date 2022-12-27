@@ -137,3 +137,16 @@ class UserService():
             return True
         except Exception:
             return False
+    
+    @staticmethod
+    def delete_user(user_id):
+        db = get_db()
+        try:
+            db.execute('''
+                DELETE FROM users
+                WHERE id = ?
+            ''', [user_id])
+            db.commit()
+            return True
+        except Exception:
+            return False

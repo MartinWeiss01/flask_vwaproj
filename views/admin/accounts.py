@@ -27,3 +27,14 @@ def change_role(user_id):
   role_id = request.args.get('role_id')
   UserService.set_user_role(user_id, role_id)
   return redirect(url_for('admin.accounts.manage_accounts'))
+
+@accounts_bp.route('/delete/<int:user_id>', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('admin')
+def delete_account(user_id):
+  if(user_id == session['user_id']):
+    flash('You cannot delete your own account')
+  else:
+    if(UserService.delete_user(user_id) == False):
+      flash('User cannot be deleted')
+  return redirect(url_for('admin.accounts.manage_accounts'))
