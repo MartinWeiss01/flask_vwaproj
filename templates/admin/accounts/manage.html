@@ -23,7 +23,7 @@
       <tbody>
         {% for account in users %}
         <tr data-accountid="{{ account.id }}">
-          <td class="multiline">
+          <td class="multiline" title="{{ account.registration }}">
             <span>{{ account.firstname }} {{ account.lastname }}</span>
             <small>{{ account.email }}</small>
           </td>
@@ -33,7 +33,7 @@
             {% else %}
             <select name="role" id="role" data-role="{{ account.title }}" data-role-id="{{ account.roles_id }}"
               onchange="
-              if(confirm(`Are you sure you want to change the role from ${this.dataset.role} to ${this.options[this.selectedIndex].text}?`)) {
+              if(confirm(`Are you sure you want to change the role from ${this.dataset.role} to ${this.options[this.selectedIndex].text} for ${this.parentElement.parentElement.querySelector('td:first-child span').innerText}?`)) {
                 return window.location.href = `{{ url_for('admin.accounts.change_role', user_id=account.id) }}?role_id=${this.options[this.selectedIndex].value}`;
               } else {
                 return this.value = parseInt(this.dataset.roleId) || 1;
@@ -45,16 +45,18 @@
             </select>
             {% endif %}
           </td>
-          <td data-state="{{ account.activated }}" class="boolean-state">{{ account.state }}</td>
+
+          <td data-state="{{ account.activated }}" class="boolean-state" {% if account.activated %}
+            title="{{ account.activation }}" {% endif %}>{{ account.state }}</td>
 
           <td class="column-right-align">
             {% if account.id != current_user_id %}
             {% if not account.activated %}
-            <a href="{{ url_for('admin.accounts.activate_account', user_id=account.id) }}">
+            <a class="btn-action success" href="{{ url_for('admin.accounts.activate_account', user_id=account.id) }}">
               Approve
             </a>
             {% endif %}
-            <a href="{{ url_for('admin.accounts.delete_account', user_id=account.id) }}">
+            <a class="btn-action danger" href="{{ url_for('admin.accounts.delete_account', user_id=account.id) }}">
               Delete
             </a>
             {% endif %}
