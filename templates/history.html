@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>My history</h1>
+
+  <div class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Price</th>
+          <th> Weight</th>
+          <th class="column-right-align"> Date </th>
+        </tr>
+      </thead>
+           <tbody>
+        {% for collect in collections %}
+        <tr>
+          <td>{{ collect.name }}</td>
+          <td>{{ "%.2f"|format(collect.pricePerUnit) }} Kč</td>
+          <td>{{ "%.2f"|format(collect.weight) }} Kg<td>
+          <td class="column-right-align" title="{{ collect.received }}" data-dateformatter="true">{{
+            collect.received }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -41,6 +41,105 @@ class UserService():
             #if new account is created, return user id (inserted id), else return -1
             return -1
 
+
+    @staticmethod
+    def update_user(email, password, phone, id):
+        db= get_db()
+        hash = hashlib.sha256(f'{password}{config.PASSWORD_SALT}'.encode())
+
+        db.execute('''
+                    UPDATE users
+                    SET
+                    email= ?,
+                    password= ?,
+                    phone= ?
+                    where users.id = ?
+        ''', [email, hash.hexdigest(), phone, id])
+        db.commit()
+
+
+    @staticmethod
+    def update_address_main(street, city, postalcode, id):
+        db=get_db()
+        main=1
+        result = db.execute('''
+                           UPDATE addresses
+                           SET
+                           street= ?,
+                           city= ?,
+                           postalcode= ?
+                           where addresses.users_id= ?
+                           and addresses.main=0
+                ''', [street, city, postalcode, id])
+        db.commit()
+        if result.lastrowid is None:
+            return None
+        else:
+            db.execute('''
+                          INSERT INTO addresses (main,street,city,postalcode,users_id)
+                          VALUES(?,?,?,?,?)
+
+                    ''', [main, street, city, postalcode, id])
+            db.commit()
+
+    @staticmethod
+    def update_address(street, city, postalcode, id):
+        db = get_db()
+        main=0
+        result=db.execute('''
+                   UPDATE addresses
+                   SET
+                   street= ?,
+                   city= ?,
+                   postalcode= ?
+                   where addresses.users_id= ?
+                   and addresses.main=0
+        ''', [street, city, postalcode, id])
+        db.commit()
+        if result.lastrowid is None:
+            return None
+        else:
+            db.execute('''
+                  INSERT INTO addresses (main,street,city,postalcode,users_id)
+                  VALUES(?,?,?,?,?)
+            
+            ''',[main,street,city,postalcode,id])
+            db.commit()
+
+    @staticmethod
+    def get_user(id):
+        db=get_db()
+        result = db.execute('''
+                                    SELECT 
+                                     users.firstname, 
+                                     users.lastname, 
+                                     users.email, 
+                                     users.phone
+                                    FROM users
+                                    where users.id = ?
+                                ''', [id]).fetchone()
+        if result:
+            return result
+        else:
+            return None
+
+    @staticmethod
+    def get_addresses_by_user(id):
+        db = get_db()
+        result = db.execute('''
+                                        SELECT 
+                                         addresses.street, 
+                                         addresses.city, 
+                                         addresses.postalcode, 
+                                         addresses.main
+                                        FROM addresses
+                                        where addresses.users_id = ?
+                                    ''', [id]).fetchall()
+        if result:
+            return result
+        else:
+            return None
+
     @staticmethod
     def get_users():
         db = get_db()

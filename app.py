@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from views.auth import auth_bp
 from views.homepage import homepage
 from views.admin.admin import admin_bp
+from views.account import account_bp
 from database import database
 from service.materials_service import MaterialsService
-from views.worker.worker import worker_bp
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -14,9 +14,7 @@ database.init_app(app)
 app.register_blueprint(homepage, url_prefix='/')
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(admin_bp, url_prefix='/admin')
-app.register_blueprint(worker_bp, url_prefix='/worker')
-
-
+app.register_blueprint(account_bp, url_prefix='/account')
 @app.route('/prices')
 def view_current_prices():
     prices = MaterialsService.get_current_prices()

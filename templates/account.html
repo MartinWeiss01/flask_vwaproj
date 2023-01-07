@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
+
+
+{% block content %}
+<h1 class="flex-center"> About me </h1>
+
+
+    <p><br>Name:</br> {{ user['firstname'] }}</p>
+    <p><br>Surname:</br> {{ user['lastname'] }}</p>
+    <p>Email: {{ user['email'] }}</p>
+    <p>Phone: {{ user['phone'] }}</p>
+
+
+
+{% for address in addresses %}
+
+    <p>{{ address['street'] }}</p>
+    <p>{{ address['city'] }}</p>
+    <p>{{ address['postalcode'] }}</p>
+
+{% endfor %}
+
+<h1 class="flex-center"> Update information</h1>
+<section class="flex-center">
+<form method="POST">
+
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.password_repeat) }}
+    {{ render_field(form.phone) }}
+    {{ render_field(form.street_main) }}
+    {{ render_field(form.city_main) }}
+    {{ render_field(form.postalcode_main) }}
+    {{ render_field(form.street) }}
+    {{ render_field(form.city) }}
+    {{ render_field(form.postalcode) }}
+    <input type="submit" class="w-100" value="Update">
+  </form>
+</section>
+{% endblock %}
