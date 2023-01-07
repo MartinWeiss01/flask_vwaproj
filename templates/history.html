@@ -11,14 +11,14 @@
           <th>Material</th>
           <th>Price</th>
           <th> Weight</th>
-          <th class="column-right-align"> Date </th>
+          <th class="column-right-align"> Date of collect </th>
         </tr>
       </thead>
            <tbody>
         {% for collect in collections %}
         <tr>
           <td>{{ collect.name }}</td>
-          <td>{{ "%.2f"|format(collect.pricePerUnit) }} Kč</td>
+          <td>{{ "%.2f"|format(collect.total_price) }} Kč</td>
           <td>{{ "%.2f"|format(collect.weight) }} Kg<td>
           <td class="column-right-align" title="{{ collect.received }}" data-dateformatter="true">{{
             collect.received }}</td>

@@ -3,17 +3,29 @@
     <i class="fa-solid fa-bars"></i>
 </div>
 <nav id="nav">
-    <a href="{{url_for('homepage.index')}}">Home Company</a>
-    <a href="{{url_for('view_all_stats')}}">Statistics</a>
-    <a href="{{url_for('view_current_prices')}}">Current Prices</a>
-    <a>About Us</a>
+    <ul>
+   <li> <a href="{{url_for('homepage.index')}}">Home Company</a></li>
+  <li>   <a href="{{url_for('view_all_stats')}}">Statistics</a></li>
+   <li>  <a href="{{url_for('view_current_prices')}}">Current Prices</a></li>
+
+
+
+   <li>  <a>About Us</a></li>
     {% if session['authenticated'] %}
-    <a href="{{url_for('account.history')}}">History</a>
-    <a href="{{url_for('account.account')}}">Account</a>
-    <a href="{{url_for('auth.signout')}}">Logout</a>
-    {% else %}
-    <a href="{{url_for('auth.sign_in')}}">Sign in</a>
+   <li>  <a href="{{url_for('account.history')}}">History</a>
+   <li>  <a href="{{url_for('account.account')}}">Account</a>
+    {% if session['role'] == 'admin' %}
+        <ul>
+        <li>  <a href="{{url_for('admin.materials.update_prices')}}">Update Price</a></li>
+        <li>  <a href="{{url_for('admin.accounts.manage_accounts')}}">Manage Accounts</a></li>
+        </ul>
     {% endif %}
-    </div>
+   </li>
+   <li>  <a href="{{url_for('auth.signout')}}">Logout</a></li>
+
+    {% else %}
+   <li>  <a href="{{url_for('auth.sign_in')}}">Sign in</a></li>
+    {% endif %}
+    </ul>
 </nav>
 {% endblock%}
