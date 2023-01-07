@@ -73,3 +73,12 @@ class MaterialsService():
         if result is None:
             return None
         return result['name']
+
+    @staticmethod
+    def get_materials():
+        db = get_db()
+        return db.execute('''
+              SELECT materials.id, 
+                     materials.name  
+                FROM materials
+            ''').fetchall()

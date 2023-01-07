@@ -1,13 +1,13 @@
 from database.database import get_db
 
-class UserService():
+class ColectionsService():
     @staticmethod
     def register_collection(weight, description, users_id, materials_id):
       db = get_db()
       try:
           result = db.execute('''
-              INSERT INTO collections (weight, description, users_id, materials_id)
-              VALUES (?, ?, ?, ?)
+              INSERT INTO collections (weight, description, users_id, materials_id, received)
+              VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
           ''', [weight, description, users_id, materials_id])
           db.commit()
           return result.lastrowid

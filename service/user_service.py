@@ -157,3 +157,13 @@ class UserService():
             return True
         except Exception:
             return False
+
+    @staticmethod
+    def get_user_id(email):
+        db = get_db()
+        result = db.execute('''
+            SELECT id FROM users WHERE email = ?
+            ''', [email]).fetchone()
+        if result is None:
+            return -1
+        return result['id']

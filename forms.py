@@ -17,3 +17,8 @@ class RegistrationUserForm(Form):
 class MaterialForm(Form):
     name = StringField(name='name', label='Name', validators=[validators.InputRequired(), validators.Length(min=2, max=32)], render_kw={'placeholder': 'Iron'})
     price = StringField(name='price', label='Price per kg', validators=[validators.InputRequired(), validators.Regexp(regex=r'^\d+(\.(\d)+)?$', flags=re.MULTILINE, message='Supported price formatting: 123 (integer) or 123.00 (float)')], render_kw={'placeholder': '129.90'})
+
+class CollectionForm(Form):
+    weight = StringField(name='weight', label='Weight', validators=[validators.InputRequired(), validators.Regexp(regex=r'^\d+(\.(\d)+)?$', flags=re.MULTILINE, message='Supported price formatting: 123 (integer) or 123.00 (float)')])
+    description = StringField(name='description', label='Description', validators=[validators.InputRequired()])
+    email = StringField(name='email', label='Email', validators=[validators.InputRequired(), validators.Email(message='Invalid email address')])
