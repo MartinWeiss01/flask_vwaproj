@@ -6,8 +6,8 @@ class CollectionsService():
       db = get_db()
       try:
           result = db.execute('''
-              INSERT INTO collections (weight, description, users_id, materials_id)
-              VALUES (?, ?, ?, ?)
+              INSERT INTO collections (weight, description, users_id, materials_id, received)
+              VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
           ''', [weight, description, users_id, materials_id])
           db.commit()
           return result.lastrowid
@@ -48,3 +48,17 @@ class CollectionsService():
           ) as t1 order by cid, rank
         ) as t2 WHERE rank = 1 AND users_id = ?
       ''', [user_id]).fetchall()
+
+    @staticmethod
+    def get_all_collections():
+        db = get_db()
+        return db.execute('''
+               SELECT c.id as id_col, u.email as email, m.name as material,
+                    c.weight as weight, c.received as received, c.description as description 
+                FROM collections as c
+               INNER JOIN materials as m 
+                    ON m.id = c.materials_id
+                INNER JOIN users as u 
+                    ON u.id = c.users_id
+                ORDER BY c.id DESC
+             ''').fetchall()

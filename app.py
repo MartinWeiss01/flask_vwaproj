@@ -3,8 +3,10 @@ from views.auth import auth_bp
 from views.homepage import homepage
 from views.admin.admin import admin_bp
 from views.account import account_bp
+from views.worker.worker import worker_bp
 from database import database
 from service.materials_service import MaterialsService
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -15,6 +17,7 @@ app.register_blueprint(homepage, url_prefix='/')
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(admin_bp, url_prefix='/admin')
 app.register_blueprint(account_bp, url_prefix='/account')
+app.register_blueprint(worker_bp, url_prefix='/worker' )
 @app.route('/prices')
 def view_current_prices():
     prices = MaterialsService.get_current_prices()

@@ -2,16 +2,16 @@ from flask import Blueprint, render_template, session, redirect, url_for, reques
 
 import auth
 import forms
-from service.collections_service import ColectionsService
+from service.collections_service import CollectionsService
 from service.materials_service import MaterialsService
 from service.user_service import UserService
 
 collections_bp = Blueprint('collections', __name__)
 
-@collections_bp.route('/home', methods=['GET', 'POST'])
+@collections_bp.route('/all', methods=['GET', 'POST'])
 def update_collections():
-  collections = ColectionsService.get_collections()
-  return render_template('homepage/index.html')
+  collections = CollectionsService.get_all_collections()
+  return render_template('worker/collections/all_collections.html', collections=collections)
 
 
 @collections_bp.route('/register', methods=['GET', 'POST'])
@@ -26,7 +26,7 @@ def new_collection():
     materials_id = request.form.get('materials_id')
     if users_id != -1:
       if form.validate():
-        insertedId = ColectionsService.register_collection(weight=request.form['weight'], description=request.form['description'], users_id=users_id, materials_id=materials_id)
+        insertedId = CollectionsService.register_collection(weight=request.form['weight'], description=request.form['description'], users_id=users_id, materials_id=materials_id)
         if insertedId != -1 and form.validate():
           return redirect(url_for('worker.collections.update_collections'))
       else:

@@ -196,10 +196,11 @@ class UserService():
                 users.activation,
                 users.activated,
                 users.roles_id,
-                roles.title
+                roles.title,
+                IIF(activated == 1, 'Approved', 'Waiting') as state
             FROM users
                 INNER JOIN roles ON roles.id = users.roles_id
-            WHERE activated = 0
+            WHERE activated = 0 and roles_id = 1
         ''').fetchall()
         return result
     
