@@ -22,7 +22,7 @@ def account():
         UserService.update_address(request.form['street'], request.form['city'], request.form['postalcode'],
                                         session['user_id'])
         return redirect(url_for('account.account'))
-    return render_template('account.html', form=form, user=user,addresses=addresses, addresses_main=addresses_main)
+    return render_template('default/account.html', form=form, user=user,addresses=addresses, addresses_main=addresses_main)
 
 
 @account_bp.route('/history', methods=['GET', 'POST'])
@@ -31,4 +31,4 @@ def history():
 
     collections= CollectionsService.get_collections_by_user(session['user_id'])
 
-    return render_template('history.html', collections=collections)
+    return render_template('default/history.html', collections=collections)
