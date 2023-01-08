@@ -3,25 +3,62 @@
 
 
 {% block content %}
-<h1 class="flex-center"> About me </h1>
+ <h1 > About me </h1>
+<br>
+<div class="tools">
+<div >
 
 
-    <p><br>Name:</br> {{ user['firstname'] }}</p>
-    <p><br>Surname:</br> {{ user['lastname'] }}</p>
-    <p>Email: {{ user['email'] }}</p>
-    <p>Phone: {{ user['phone'] }}</p>
-
-
-
-{% for address in addresses %}
-
+    <h3>Name: </h3>
+    <p>{{ user['firstname'] }}</p>
+    <h3>Surname: </h3>
+    <p>{{ user['lastname'] }}</p>
+<h3>Email:</h3>
+<p> {{ user['email'] }}</p>
+<h3>Phone: </h3>
+<p>{{ user['phone'] }}</p>
+</div>
+<div >
+ {% if addresses_main  %}
+    <h3>Address of permanent:</h3>
+   {% for address in addresses_main %}
+    <h3>Address of permanent:</h3>
     <p>{{ address['street'] }}</p>
     <p>{{ address['city'] }}</p>
     <p>{{ address['postalcode'] }}</p>
+    {% endfor %}
+    {% else %}
 
-{% endfor %}
+    <h3>Address of permanent:</h3>
+    <p> None </p>
+    <p>None </p>
+    <p>None </p>
 
-<h1 class="flex-center"> Update information</h1>
+    {% endif %}
+
+</div>
+ <div >
+{% if addresses %}
+
+{% for address in addresses %}
+    <h3>Address of temporary:</h3>
+    <p>{{ address['street'] }}</p>
+    <p>{{ address['city'] }}</p>
+    <p>{{ address['postalcode'] }}</p>
+     {% endfor %}
+    {% else %}
+    <h3>Address of temporary:</h3>
+    <p>None</p>
+    <p>None</p>
+    <p>None</p>
+
+
+    {% endif %}
+ </div>
+
+</div>
+<br>
+<h1 > Update information</h1>
 <section class="flex-center">
 <form method="POST">
 

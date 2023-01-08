@@ -124,8 +124,9 @@ class UserService():
             return None
 
     @staticmethod
-    def get_addresses_by_user(id):
+    def get_addresses_by_user_main(id):
         db = get_db()
+
         result = db.execute('''
                                         SELECT 
                                          addresses.street, 
@@ -133,8 +134,26 @@ class UserService():
                                          addresses.postalcode, 
                                          addresses.main
                                         FROM addresses
-                                        where addresses.users_id = ?
+                                        where addresses.users_id = ? and addresses.main=1
                                     ''', [id]).fetchall()
+        if result:
+            return result
+        else:
+            return None
+
+    @staticmethod
+    def get_addresses_by_user(id):
+        db = get_db()
+
+        result = db.execute('''
+                                          SELECT 
+                                           addresses.street, 
+                                           addresses.city, 
+                                           addresses.postalcode, 
+                                           addresses.main
+                                          FROM addresses
+                                          where addresses.users_id = ? and addresses.main=0
+                                      ''', [id]).fetchall()
         if result:
             return result
         else:

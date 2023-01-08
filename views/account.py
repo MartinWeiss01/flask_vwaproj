@@ -12,8 +12,8 @@ account_bp= Blueprint('account', __name__)
 def account():
     form = forms.UpdateUserForm(request.form)
     user = UserService.get_user(session['user_id'])
-    addresses=UserService.get_addresses_by_user(session['user_id'])
-
+    addresses_main=UserService.get_addresses_by_user_main(session['user_id'])
+    addresses= UserService.get_addresses_by_user(session['user_id'])
     if request.method == 'POST' and form.validate():
         UserService.update_user(request.form['email'], request.form['password'], request.form['phone']
                            ,session['user_id'])
@@ -22,7 +22,7 @@ def account():
         UserService.update_address(request.form['street'], request.form['city'], request.form['postalcode'],
                                         session['user_id'])
         return redirect(url_for('account.account'))
-    return render_template('account.html', form=form, user=user,addresses=addresses)
+    return render_template('account.html', form=form, user=user,addresses=addresses, addresses_main=addresses_main)
 
 
 @account_bp.route('/history', methods=['GET', 'POST'])
