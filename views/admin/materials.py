@@ -8,14 +8,14 @@ materials_bp = Blueprint('materials', __name__)
 
 @materials_bp.route('/manage', methods=['GET', 'POST'])
 @auth.login_required
-@auth.roles_required('admin')
+@auth.roles_required('admin', 'limited_admin')
 def update_prices():
   prices = MaterialsService.get_current_prices()
   return render_template('admin/materials/manage.html', prices=prices)
 
 @materials_bp.route('/manage/<int:material_id>', methods=['GET', 'POST'])
 @auth.login_required
-@auth.roles_required('admin')
+@auth.roles_required('admin', 'limited_admin')
 def update_material(material_id):
   form = forms.MaterialForm(request.form)
   material_name = MaterialsService.get_material_name(material_id)
@@ -40,7 +40,7 @@ def update_material(material_id):
 
 @materials_bp.route('/new', methods=['GET', 'POST'])
 @auth.login_required
-@auth.roles_required('admin')
+@auth.roles_required('admin', 'limited_admin')
 def new_material():
   form = forms.MaterialForm(request.form)
   if request.method == 'POST' and form.validate():
