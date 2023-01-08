@@ -6,10 +6,7 @@
    <li> <a href="{{url_for('homepage.index')}}">Home</a></li>
   <li>   <a href="{{url_for('view_all_stats')}}">Statistics</a></li>
    <li>  <a href="{{url_for('view_current_prices')}}"> Prices</a></li>
-
-
-
-   <li>  <a>About Us</a></li>
+ <li> <a href="{{url_for('view_about_us')}}">About Us</a></li>
 
     {% if session['authenticated'] %}
         {% if session['role'] == 'default' %}
