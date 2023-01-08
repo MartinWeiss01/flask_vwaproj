@@ -543,5 +543,16 @@ footer a {
     margin-bottom: 1em;
 }
 
+.container {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.card {
+  flex: 50%;
+  padding: 10px;
+  line-height: 2.5;
+}
+
 
 

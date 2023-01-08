@@ -1,5 +1,6 @@
 import re
-from wtforms import Form, StringField, PasswordField, validators,IntegerField
+from wtforms import Form, StringField, PasswordField, validators, IntegerField, TextAreaField
+
 
 class SignInForm(Form):
     email = StringField(name='email', label='E-mail', validators=[validators.InputRequired(), validators.Email(message='Invalid email address')])
@@ -54,5 +55,5 @@ class UpdateUserForm(Form):
 
 class CollectionForm(Form):
     weight = StringField(name='weight', label='Weight', validators=[validators.InputRequired(), validators.Regexp(regex=r'^\d+(\.(\d)+)?$', flags=re.MULTILINE, message='Supported price formatting: 123 (integer) or 123.00 (float)')])
-    description = StringField(name='description', label='Description', validators=[validators.InputRequired()])
+    description = TextAreaField(name='description', label='Description', validators=[validators.InputRequired()])
     email = StringField(name='email', label='Email', validators=[validators.InputRequired(), validators.Email(message='Invalid email address')])
