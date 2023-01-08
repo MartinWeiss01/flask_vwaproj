@@ -44,16 +44,16 @@
     </table>
   </div>
 
-  <div class="responsive-table only-desktop">
+  <div class="big-table only-desktop">
     <table>
       <thead>
         <tr>
-          <th>Collection's id</th>
+          <th>Id</th>
           <th>User</th>
           <th>Material</th>
           <th>Weight</th>
           <th>Received</th>
-          <th>Description</th>
+          <th >Description</th>
         </tr>
       </thead>
       <tbody>
@@ -65,12 +65,11 @@
           <td>{{ collection.material }}</td>
           <td>{{ "%.2f"|format(collection.weight) }} kg</td>
           <td title="{{ collection.received }}" data-dateformatter="true">{{ collection.received }}</td>
-          <td>{{ collection.description }}</td>
+          <td class="big-td" >{{ collection.description }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-
 </section>
 {% endblock %}

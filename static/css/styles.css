@@ -77,6 +77,16 @@ img.left-image {
   overflow-x: auto;
   border-radius: 6px;
 }
+.big-table {
+  width: 100%;
+  border-radius: 6px;
+  overflow-x: hidden;
+}
+.big-td {
+  word-break: break-all;
+  white-space: normal;
+}
+
 
 table {
   border-collapse: collapse;
