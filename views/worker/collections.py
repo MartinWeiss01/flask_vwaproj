@@ -9,6 +9,8 @@ from service.user_service import UserService
 collections_bp = Blueprint('collections', __name__)
 
 @collections_bp.route('/all', methods=['GET', 'POST'])
+@auth.login_required
+@auth.roles_required('employee', 'admin')
 def update_collections():
   collections = CollectionsService.get_all_collections()
   return render_template('worker/collections/all_collections.html', collections=collections)
