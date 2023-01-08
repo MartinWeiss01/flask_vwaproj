@@ -385,6 +385,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   padding: 2em 2em 5em 2em;
+
 }
 
 footer h3 {
@@ -394,7 +395,7 @@ footer h3 {
 footer div {
   margin-right: 2em;
   margin-bottom: 2em;
-  width: 30%;
+  width: 20%;
 }
 
 footer a {
