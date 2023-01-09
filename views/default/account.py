@@ -28,7 +28,7 @@ def account():
 @account_bp.route('/history', methods=['GET', 'POST'])
 @auth.login_required
 def history():
-
+    sum_mounth= CollectionsService.get_total_price_by_user_actual_month(session['user_id'])
     collections= CollectionsService.get_collections_by_user(session['user_id'])
 
-    return render_template('default/history.html', collections=collections)
+    return render_template('default/history.html', collections=collections, sum_mounth=sum_mounth)

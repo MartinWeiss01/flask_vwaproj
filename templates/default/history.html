@@ -3,7 +3,10 @@
 {% block content %}
 <section class="flex-center">
   <h1>My history</h1>
-
+  <br>
+  <h3>Amount current month:</h3>
+  <p>{{ "%.2f"|format(sum_mounth.total_price) }} Kč</p>
+  <br>
   <div class="responsive-table only-desktop">
     <table>
       <thead>
