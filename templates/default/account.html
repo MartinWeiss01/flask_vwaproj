@@ -21,16 +21,16 @@
 </div>
 <div >
  {% if addresses_main  %}
-    <h3>Address of permanent:</h3>
+   <h3>Address of permanent:</h3>
    {% for address in addresses_main %}
-    <h3>Address of permanent:</h3>
+
     <p>{{ address['street'] }}</p>
     <p>{{ address['city'] }}</p>
     <p>{{ address['postalcode'] }}</p>
     {% endfor %}
     {% else %}
 
-    <h3>Address of permanent:</h3>
+
     <p> None </p>
     <p>None </p>
     <p>None </p>
@@ -40,15 +40,15 @@
 </div>
  <div >
 {% if addresses %}
-
+<h3>Address of temporary:</h3>
 {% for address in addresses %}
-    <h3>Address of temporary:</h3>
+
     <p>{{ address['street'] }}</p>
     <p>{{ address['city'] }}</p>
     <p>{{ address['postalcode'] }}</p>
      {% endfor %}
     {% else %}
-    <h3>Address of temporary:</h3>
+
     <p>None</p>
     <p>None</p>
     <p>None</p>
