@@ -648,3 +648,10 @@ img.responsive {
   max-width: 100%;
   height: auto;
 }
+
+@media screen and (max-width: 768px) {
+  .account-responsive {
+    display: flex;
+    flex-direction: column;
+  }
+}
