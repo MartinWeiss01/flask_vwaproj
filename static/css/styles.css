@@ -366,6 +366,12 @@ This element has a negative offset to ensure that the target section is not hidd
   font-size: 0.8em;
 }
 
+.homepage ul {
+  font-size: 1.2em;
+}
+.homepage li {
+  padding: 1em 1em;
+}
 
 @media screen and (max-width: 992px) {
   .side-by-side div {
