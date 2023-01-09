@@ -8,8 +8,9 @@
   <h3>Amount {{sum_month.curr_month}}:</h3>
   <p>{{ "%.2f"|format(sum_month.total_price) }} Kč</p>
   {% else %}
-  <h3>Amount {{sum_month.curr_month}}:</h3>
+  <h3>Amount of month:</h3>
   <p> 0 Kč </p>
+  {% endif %}
   <br>
   <div class="responsive-table only-desktop">
     <table>
