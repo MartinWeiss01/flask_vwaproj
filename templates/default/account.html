@@ -20,8 +20,9 @@
 <p>{{ user['phone'] }}</p>
 </div>
 <div >
+       <h3>Address of permanent:</h3>
  {% if addresses_main  %}
-   <h3>Address of permanent:</h3>
+
    {% for address in addresses_main %}
 
     <p>{{ address['street'] }}</p>
@@ -39,8 +40,10 @@
 
 </div>
  <div >
-{% if addresses %}
+
 <h3>Address of temporary:</h3>
+   {% if addresses %}
+
 {% for address in addresses %}
 
     <p>{{ address['street'] }}</p>

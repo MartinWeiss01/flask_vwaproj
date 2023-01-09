@@ -62,49 +62,35 @@ class UserService():
     def update_address_main(street, city, postalcode, id):
         db=get_db()
         main=1
-        result = db.execute('''
-                           UPDATE addresses
-                           SET
-                           street= ?,
-                           city= ?,
-                           postalcode= ?
-                           where addresses.users_id= ?
-                           and addresses.main=0
-                ''', [street, city, postalcode, id])
+        db.execute('''
+                DELETE FROM addresses
+                WHERE users_id= ? AND main = 1
+         ''', [id])
         db.commit()
-        if result.lastrowid:
-            return None
-        else:
-            db.execute('''
-                          INSERT INTO addresses (main,street,city,postalcode,users_id)
-                          VALUES(?,?,?,?,?)
+        db.execute('''
+                      INSERT INTO addresses (main,street,city,postalcode, users_id)
+                      VALUES(?,?,?,?,?)
+                   ''', [main, street, city, postalcode, id])
+        db.commit()
 
-                    ''', [main, street, city, postalcode, id])
-            db.commit()
+
+
+
 
     @staticmethod
     def update_address(street, city, postalcode, id):
         db = get_db()
-        main=0
-        result=db.execute('''
-                   UPDATE addresses
-                   SET
-                   street= ?,
-                   city= ?,
-                   postalcode= ?
-                   where addresses.users_id= ?
-                   and addresses.main=0
-        ''', [street, city, postalcode, id])
+        main = 0
+        db.execute('''
+                        DELETE FROM addresses
+                        WHERE users_id= ? AND main = 0
+                 ''', [id])
         db.commit()
-        if result.lastrowid:
-            return None
-        else:
-            db.execute('''
-                  INSERT INTO addresses (main,street,city,postalcode,users_id)
-                  VALUES(?,?,?,?,?)
-            
-            ''',[main,street,city,postalcode,id])
-            db.commit()
+        db.execute('''
+                              INSERT INTO addresses (main,street,city,postalcode, users_id)
+                              VALUES(?,?,?,?,?)
+                           ''', [main, street, city, postalcode, id])
+        db.commit()
 
     @staticmethod
     def get_user(id):
