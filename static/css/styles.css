@@ -256,7 +256,8 @@ nav ul ul ul {
 			    left:100%;
 		}
 li > a:after { content:  ' ↓'; }
-		li > a:only-child:after { content: ''; }
+
+li > a:only-child:after { content: ''; }
 
 nav ul li:hover > ul {
 			    display:inherit;
