@@ -100,7 +100,8 @@ class UserService():
                                      users.firstname, 
                                      users.lastname, 
                                      users.email, 
-                                     users.phone
+                                     users.phone,
+                                     users.activated
                                     FROM users
                                     where users.id = ?
                                 ''', [id]).fetchone()
