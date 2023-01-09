@@ -3,13 +3,16 @@
 {% block content %}
 <section class="flex-center">
   <h1>My history</h1>
-  <br>
+
   {% if sum_month.total_price %}
-  <h3>Amount {{sum_month.curr_month}}:</h3>
+
+  <h3>Amount of month {{sum_month.curr_month}}:</h3>
   <p>{{ "%.2f"|format(sum_month.total_price) }} Kč</p>
   {% else %}
-  <h3>Amount of month:</h3>
-  <p> 0 Kč </p>
+
+  <h3 >Amount of month:</h3>
+  <p > 0 Kč </p>
+
   {% endif %}
   <br>
   <div class="responsive-table only-desktop">
