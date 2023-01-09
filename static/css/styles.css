@@ -602,18 +602,30 @@ footer a {
 }
 
 .bloky {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1em;
 }
-
 .step-block {
   width: 25%;
+  max-width: 210px;
   display: block;
   background: #d3e6e2;
   padding: 1em 1.5em;
   text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+  .bloky {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .step-block {
+    width: 100%;
+  }
+}
+
 .step-block h2 {
   color: black;
 }
@@ -626,4 +638,9 @@ img.block-img {
   width: 80%;
   display: block;
   margin: 0 auto;
+}
+
+img.responsive {
+  max-width: 100%;
+  height: auto;
 }
