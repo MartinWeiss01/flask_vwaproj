@@ -67,7 +67,7 @@ class CollectionsService():
     def get_total_price_by_user_actual_month(user_id):
         db = get_db()
         return db.execute('''
-           SELECT cid, users_id, round(sum(weight*price),2) as total_price, received, added, materials_id, name, pid FROM (
+           SELECT cid, users_id, round(sum(weight*price),2) as total_price, received, strftime('%m.%Y',received) as curr_month, added, materials_id, name, pid FROM (
              SELECT DENSE_RANK() OVER (PARTITION BY cid ORDER BY (JULIANDAY(received)-JULIANDAY(added))) as rank, (JULIANDAY(received)-JULIANDAY(added)) as datediff, * FROM (
                SELECT
                    c.id as cid, c.weight, c.received, c.users_id, c.materials_id, m.name, p.id as pid, p.price, p.added

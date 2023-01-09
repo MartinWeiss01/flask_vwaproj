@@ -32,11 +32,11 @@ class UpdateUserForm(Form):
     postalcode_main = StringField(name='postalcode_main', label='Zip of permanent',
                             validators=[validators.Regexp(regex='[0-9]{5}', flags=re.MULTILINE, message='Supported czech postalcode format')])
 
-    street = StringField(name='street', label='Street',
+    street = StringField(name='street', label='Street of temporary',
                               validators=[validators.Length(min=2, max=32)])
-    city = StringField(name='city', label='City',
+    city = StringField(name='city', label='City or temporary',
                             validators=[validators.Length(min=2, max=32)])
-    postalcode = StringField(name='postalcode', label='Zip',
+    postalcode = StringField(name='postalcode', label='Zip of temporary',
                                   validators=[validators.Regexp(regex='[0-9]{5}', flags=re.MULTILINE, message='Supported czech postalcode format')])
     email = StringField(name='email', label='Email',
                         validators=[validators.Email(message='Invalid email address')])
