@@ -72,7 +72,7 @@ class UserService():
                            and addresses.main=0
                 ''', [street, city, postalcode, id])
         db.commit()
-        if result.lastrowid is None:
+        if result.lastrowid:
             return None
         else:
             db.execute('''
@@ -96,7 +96,7 @@ class UserService():
                    and addresses.main=0
         ''', [street, city, postalcode, id])
         db.commit()
-        if result.lastrowid is None:
+        if result.lastrowid:
             return None
         else:
             db.execute('''
