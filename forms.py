@@ -29,14 +29,14 @@ class UpdateUserForm(Form):
                             validators=[validators.Length(min=2, max=32)])
     city_main = StringField(name='city_main', label='City of permanent',
                            validators=[validators.Length(min=2, max=32)])
-    postalcode_main = StringField(name='postalcode_main', label='Postalcode of permanent',
+    postalcode_main = StringField(name='postalcode_main', label='Zip of permanent',
                             validators=[validators.Regexp(regex='[0-9]{5}', flags=re.MULTILINE, message='Supported czech postalcode format')])
 
     street = StringField(name='street', label='Street',
                               validators=[validators.Length(min=2, max=32)])
     city = StringField(name='city', label='City',
                             validators=[validators.Length(min=2, max=32)])
-    postalcode = StringField(name='postalcode', label='Postal code',
+    postalcode = StringField(name='postalcode', label='Zip',
                                   validators=[validators.Regexp(regex='[0-9]{5}', flags=re.MULTILINE, message='Supported czech postalcode format')])
     email = StringField(name='email', label='Email',
                         validators=[validators.Email(message='Invalid email address')])

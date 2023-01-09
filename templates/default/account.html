@@ -3,7 +3,8 @@
 
 
 {% block content %}
- <h1 > About me </h1>
+<br>
+<h1 > About me </h1>
 <br>
 <div class="tools">
 <div >
@@ -60,19 +61,41 @@
 <br>
 <h1 > Update information</h1>
 <section class="flex-center">
-<form method="POST">
+ <div class="side-by-side">
+    <form method="POST">
 
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-    {{ render_field(form.password_repeat) }}
-    {{ render_field(form.phone) }}
-    {{ render_field(form.street_main) }}
-    {{ render_field(form.city_main) }}
-    {{ render_field(form.postalcode_main) }}
-    {{ render_field(form.street) }}
-    {{ render_field(form.city) }}
-    {{ render_field(form.postalcode) }}
-    <input type="submit" class="w-100" value="Update">
-  </form>
+       <div class="container">
+         <div class="card">
+         <p>
+          {{ render_field(form.email) }}
+          {{ render_field(form.password) }}
+          {{ render_field(form.password_repeat) }}
+           {{ render_field(form.phone) }}
+          </p>
+         </div>
+           <div class="card">
+           <p>
+          {{ render_field(form.street_main) }}
+          {{ render_field(form.city_main) }}
+          {{ render_field(form.postalcode_main) }}
+               <br>
+               <br>
+               <br>
+          <input type="submit" class="w-100" style="width:300px" value="Update">
+           </p>
+           </div>
+           <div class="card">
+           <p>
+           {{ render_field(form.street) }}
+           {{ render_field(form.city) }}
+           {{ render_field(form.postalcode) }}
+           </p>
+           </div>
+
+
+     </div>
+    </form>
+ </div>
+
 </section>
 {% endblock %}
