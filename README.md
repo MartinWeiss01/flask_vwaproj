@@ -25,5 +25,7 @@ $ pip install -r requirements.txt
 $ flask init-db
 ```
 6. Start app
+
 ```$ flask --debug run``` in development mode
+
 ```$ flask run``` in production mode
