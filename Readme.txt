@@ -1,24 +1,29 @@
+# Flask + SQLite Web App
+
+Semester Teamwork Web App in **Flask** + **SQLite**
+Migrated from Bitbucket
+
+# Setup
+1. Change current dir to folder with project
+```
+$ cd .\proj\folder
+```
+2. Create virtual env
 ```
 $ python -m venv venv
 ```
-If `python --version` refers to version 2, you must use `python 3.10` or upgrade your python)
-
+3. Activate virtual env
 ```
-(Windows CMD) $ .\venv\Scripts\activate.bat
-(Linux, macOS) $ ./venv/bin/activate
-(Windows PowerShell) $ .\venv\Scripts\Activate.ps1
+$ .\venv\Scripts\activate
 ```
-
-Install dependencies into virtual env
+4. Install dependencies into virtual env
 ```
 $ pip install -r requirements.txt
 ```
-
-Start Flask service. Navigate your browser to **localhost:5000** where the flask is served.
+5. Init database from schema
 ```
-$ flask run
-
+$ flask init-db
 ```
-
-
-
+6. Start app
+```$ flask --debug run``` in development mode
+```$ flask run``` in production mode
